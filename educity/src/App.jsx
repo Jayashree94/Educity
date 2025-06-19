@@ -4,6 +4,9 @@ import Hero from './Components/Hero/Hero';
 import Programs from './Components/Programs/Programs';
 import Title from './Components/Title/Title';
 import About from './Components/About/About';
+import Campus from './Components/Campus/Campus';
+import Testimonials from './Components/Testimonials/Testimonials';
+import ContactUs from './Components/ContactUs/ContactUs';
 
 
 const App = () => {
@@ -15,6 +18,12 @@ const App = () => {
       <Title subTitle ="Our Program" Title="What We Offer"/>
       <Programs />
       <About/>
+      <Title subTitle ="Gallery" Title="Campus Photos"/>
+      <Campus />
+      <Title subTitle ="TESTIMONIALS" Title="What Student Says"/>
+      <Testimonials/>
+      <Title subTitle ="CONTACT US" Title="Get in Touch"/>
+      <ContactUs/>
       </div>
       
     </div>
