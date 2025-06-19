@@ -9,6 +9,34 @@ import white_arrow from '../../assets/white-arrow.png';
 
 
 const ContactUs = () => {
+
+  const YOUR_ACCESS_KEY_HERE = "93a99a10-bea8-4da1-a358-91ff282ad610";
+
+  const [result, setResult] = React.useState("");
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    setResult("Sending....");
+    const formData = new FormData(event.target);
+
+    formData.append("access_key", YOUR_ACCESS_KEY_HERE);
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      setResult("Form Submitted Successfully");
+      event.target.reset();
+    } else {
+      console.log("Error", data);
+      setResult(data.message);
+    }
+  };
+
   return (
     <div className='contact'>
       <div className="contact-col">
@@ -26,7 +54,7 @@ const ContactUs = () => {
       </ul>
       </div>
       <div className="contact-col">
-        <form>
+        <form onSubmit={onSubmit}>
           <label>Your name</label>
           <input type= "text" name="name" placeholder='Enter your name ' required></input>
           <label>Phone Number</label>
@@ -35,7 +63,7 @@ const ContactUs = () => {
           <textarea name="message" rows="6" placeholder='Enter your message' required></textarea>
           <button type='submit' className='btn dark-btn'>Submit now <img src={white_arrow} alt="arrow" /></button>
         </form>
-        <span></span>
+        <span>{result}</span>
       </div>
   
       
